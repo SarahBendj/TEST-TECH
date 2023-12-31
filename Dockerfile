@@ -4,6 +4,7 @@ WORKDIR /app
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
+# FIX: package.json and package-lock.json copies should be implicit as per security recommendations
 
 # Install dependencies
 RUN npm install
