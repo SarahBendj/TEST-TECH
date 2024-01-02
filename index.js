@@ -1,4 +1,6 @@
+# TIP: dotenv is actually better ran using node -r dotenv/config . ;)
 require('dotenv').config()
+# TIP: separate imports and constants or shared definitions
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT;
@@ -24,6 +26,7 @@ app.get('/compagnies-linkedto-members/:siren', async (req, res) => {
     jobsStatus[jobID]= { status : 'inProgress' , data : null};
     // Fetch company data by SIREN
     const companyUrl = `${BASE_URL}entreprise?siren=${siren}&api_token=${API_KEY}`;
+    # FIX: awaits make this request synchronous, asynchronous was required ;)
     const response = await fetch(companyUrl);
 
     if (!response.ok) {
